@@ -28,10 +28,12 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Session;
 
 
+
 use Illuminate\Pagination\LengthAwarePaginator;
 
 use Illuminate\Support\paginate;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MemberExport;
 class MemberController extends Controller
 {
 
@@ -1468,6 +1470,33 @@ public function exportDataToCSV(Request $request)
         }
         fclose($handle);
         return response()->make('', 200, $headers);
+}
+public function exceldownload($page)
+{
+    
+   set_time_limit(0);
+     
+  // ini_set('max_execution_time',3600);
+   //ini_set('memory_limit',"51457280");
+    //return Excel::download(new MemberExport, 'Members.xlsx');
+   // Excel::store(new MemberExport($page),'Members.xlsx','public');
+   // return  redirect()->back();
+    return Excel::download(new MemberExport($page), 'Members-'.$page.'.xlsx');
+}
+public function exportexcel()
+{
+   // return "ok";
+  
+     
+    //return Excel::download(new MemberExport, 'Members.xlsx');
+   // Excel::store(new MemberExport,'Members.xlsx','public');
+    $lastpage=Member::select('id')->paginate(4000)->lastPage();
+    //$memlist=Member::select('id')->paginate(4000,['*'],'page',2);
+  //  $numpage=$memlist->lastPage();
+   
+  //  return $numpage;
+    return view('admin.member.export2excel',['counts'=>$lastpage]);
+   // return Excel::download(new MemberExport, 'Members.xlsx');
 }
   
  // public function GetCityWithMemberCount(Request $request)

@@ -62,7 +62,7 @@ Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(functi
 
     //   /member
     Route:: prefix('member')->group(function () {
-
+      Route::get('excel/{page}', [MemberController::class, 'exceldownload']);
         Route::get('show', [MemberController::class, 'index']);
         Route::get('add', [MemberController::class, 'create']);
         Route::post('save', [MemberController::class, 'store'])->name('member.save');
@@ -87,7 +87,8 @@ Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(functi
         Route::get('all_members', [MemberController::class, 'all_members']);
 
 
-
+        Route::get('/exportexcel', [MemberController::class, 'exportexcel']);
+ 
         // for code js
         Route::get('/get-specializations/{qualificationId}',[MemberController::class, 'getSpecializations']);
         
