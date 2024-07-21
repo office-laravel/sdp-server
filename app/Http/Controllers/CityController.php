@@ -262,7 +262,7 @@ class CityController extends Controller
       $searchTerm = $name;
       $street = City::where('street', 'like', '%'.$searchTerm.'%')
       ->whereNotNull('street')
-      ->orderBy('area', 'Asc')
+      ->orderBy('street', 'Asc')
       ->take(5)
       // ->pluck('id', 'street', 'parentId');
       ->get(['id', 'street', 'parentId', 'grandId']);
@@ -274,16 +274,7 @@ class CityController extends Controller
 
     public function search_area(Request $request, $areaId)
     {
-      // $searchTerm = $request->input('area');
-
-      // $area = City::where('area', 'like', '%'.$searchTerm.'%')
-      $area = City::where('id', $areaId)
-      ->whereNotNull('area')
-      ->orderBy('Name', 'Asc')
-      // ->take(5)
-
-      ->get(['id', 'area', 'parentId']);
-
+      $area = City::where('id', $areaId)->get(['id', 'area', 'parentId']);
       return response()->json($area);
     }
 
