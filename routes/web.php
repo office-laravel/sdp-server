@@ -80,6 +80,15 @@ Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(functi
         Route::get('print/{id}', [MemberController::class, 'print'])->name('print');
 
 
+
+
+        Route::get('/search_street/{name}', [CityController::class, 'search_street']);
+        Route::get('/search_area/{areaId}', [CityController::class, 'search_area']);
+        Route::get('/search_city/{id}', [CityController::class, 'search_city']);
+
+
+
+
         Route::post('avilable', [MemberController::class, 'avilable_idteam'])->name('avilable');
         Route::get('avilable_add/{avilable}', [MemberController::class, 'avilable_create'])->name('avilable_add');
 
@@ -342,9 +351,9 @@ Route::middleware(['auth', 'verified', 'manager'])-> prefix('manager')->group(fu
 // Place all other routes above this one
 // Catch-all route
 
-Route::get('/{any}', function() {
-  return redirect('/');
-})->where('any', '.*');
+// Route::get('/{any}', function() {
+//   return redirect('/');
+// })->where('any', '.*');
 
 
 require __DIR__.'/auth.php';

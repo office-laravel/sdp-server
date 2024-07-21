@@ -34,6 +34,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\paginate;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MemberExport;
+
 class MemberController extends Controller
 {
 
@@ -873,6 +874,8 @@ public function destroyForNotice($IDTeam)
        return redirect()->route('delete');
 }
 
+
+
 public function searchByName(Request $request)
 {
     $searchTerm = $request->input('search_FirstName');
@@ -881,7 +884,12 @@ public function searchByName(Request $request)
     if ( auth()->user()->Role == 'admin')
     {
     $members =  Member::where('FirstName', 'like', '%'.$searchTerm.'%')->orderBy('FirstName', 'Asc')->paginate(50);
-   
+    
+    // $members->paginate(50);
+    // $membersPaginated = $members->paginate(50);
+
+    // dd($members);
+
     // $members = Member::where('FirstName', 'like', '%'.$searchTerm.'%')
     // ->orderBy('FirstName', 'Asc')
     // ->paginate(50)
@@ -897,12 +905,15 @@ public function searchByName(Request $request)
     $memberCount =  Member::where('FirstName', 'like', '%'.$searchTerm.'%')->count();
     $paginationLinks = $members->withQueryString()->links('pagination::bootstrap-4');
     
+    // $paginationLinks = $members->appends(['search_FirstName' => $searchTerm])->links('pagination::bootstrap-4');
+
     return view('admin.member.show', [
         'members' => $members,
         'memberCount'=>$memberCount,
         'paginationLinks' => $paginationLinks
     ]);
-   }
+    }
+
    elseif (optional(auth()->user())->Role == 'manager') {
     $user = auth()->user();
     $cityName = DB::table('cities')
@@ -912,15 +923,17 @@ public function searchByName(Request $request)
     $members = Member::where('City', $cityName)->where('FirstName', 'like', '%'.$searchTerm.'%')->orderBy('FirstName', 'Asc')->paginate(50);
     $memberCount = Member::where('City', $cityName)->where('FirstName', 'like', '%'.$searchTerm.'%')->count();
     $paginationLinks = $members->withQueryString()->links('pagination::bootstrap-4'); 
+    
     return view('manager.member.show', [
         'members' => $members,
         'memberCount'=>$memberCount,
         'paginationLinks' => $paginationLinks
     ]);
- 
- }
+    }
 
 }
+
+
 
 
 // public function searchByName(Request $request)
@@ -1059,7 +1072,8 @@ public function searchForActiveMember()
          'paginationLinks' => $paginationLinks
      ]);
     }
-}
+} 
+
 public function searchForDisActiveMember()
 {
    if ( auth()->user()->Role == 'admin')
@@ -1093,7 +1107,7 @@ public function searchForDisActiveMember()
    }
 }
 
-    public function searchByIDTeam(Request $request)
+public function searchByIDTeam(Request $request)
 {
     $searchTerm = $request->input('search_IDTeam');
     if( $searchTerm)
@@ -1134,7 +1148,7 @@ public function searchForDisActiveMember()
 
 }
 
- public function searchByQualification(Request $request)
+public function searchByQualification(Request $request)
 {
       $searchTerm = $request->input('search_Qualification');
       $request->session()->put('search_Qualification', $searchTerm);
@@ -1375,7 +1389,6 @@ public function searchByOccupation(Request $request)
         return back();
 }
     
-
 public function exportDataToCSV(Request $request)
 {
        $searchFirstName = $request->session()->get('search_FirstName');
@@ -1485,12 +1498,16 @@ public function exportDataToCSV(Request $request)
         fclose($handle);
         return response()->make('', 200, $headers);
 }
+
+
+
 public function exceldownload($page)
 {
     
    set_time_limit(0);
     return Excel::download(new MemberExport($page), 'Members-'.$page.'.xlsx');
 }
+
 public function exportexcel()
 {
     
@@ -1500,6 +1517,8 @@ public function exportexcel()
   
 }
   
+
+
  // public function GetCityWithMemberCount(Request $request)
     // {
     //     $searchTerm = $request->input('searchTerm');

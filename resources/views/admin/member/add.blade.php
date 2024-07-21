@@ -182,6 +182,11 @@
 
 									<div class="form-group">
 										<label>المنطقة</label>
+
+
+										<input class="form-control" placeholder="المنطقة" value="" type="search" name="area">
+
+
 										<select name="area" id="area" 
 										class="form-control select">
 
@@ -198,6 +203,11 @@
 
 									<div class="form-group">
 										<label>الحي</label>
+
+
+										<input class="form-control" placeholder="الحي" value="" type="search" name="street">
+
+
 										<select name="street" id="street"
 										class="form-control select">
 

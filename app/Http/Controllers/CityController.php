@@ -250,4 +250,50 @@ class CityController extends Controller
       return response()->json($street);
     }
 
+
+
+
+
+
+
+
+    public function search_street(Request $request, $name)
+    {
+      $searchTerm = $name;
+      $street = City::where('street', 'like', '%'.$searchTerm.'%')
+      ->whereNotNull('street')
+      ->orderBy('area', 'Asc')
+      ->take(5)
+      // ->pluck('id', 'street', 'parentId');
+      ->get(['id', 'street', 'parentId', 'grandId']);
+
+      return response()->json($street);
+    }
+
+
+
+    public function search_area(Request $request, $areaId)
+    {
+      // $searchTerm = $request->input('area');
+
+      // $area = City::where('area', 'like', '%'.$searchTerm.'%')
+      $area = City::where('id', $areaId)
+      ->whereNotNull('area')
+      ->orderBy('Name', 'Asc')
+      // ->take(5)
+
+      ->get(['id', 'area', 'parentId']);
+
+      return response()->json($area);
+    }
+
+
+
+    public function search_city(Request $request, $id)
+    {
+      $city = City::where('id', $id)->get(['id', 'Name']);
+      return response()->json($city);
+    }
+
+
 }

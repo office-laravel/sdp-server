@@ -35,16 +35,30 @@ class MemberExport implements FromCollection , WithHeadings
     public function headings(): array
     {
         return [
-            
             'الرقم التعريفي',
-             'الرقم الحزبي',
-             'الاسم',
-             'الكنية',
-             'الاب',
-            'الام',
-            'PlaceOfBirth','BirthDate','Constraint',
-    'City','IDNumber','Gender','Qualification','Occupation','MobilePhone','HomeAddress',
-    'WorkAddress','HomePhone','WorkPhone','DateOfJoin','Specialization','Image','area','street'
+            'الرقم الحزبي',
+            'الاسم',
+            'الكنية',
+            'الأب',
+            'الأم',
+            'مكان الولادة',
+            'تاريخ الولادة',
+            'محل ورقم القيد',
+            'المحافظة',
+            'الرقم الوطني',
+            'الجنس',
+            'الؤهل العلمي',
+            'المهنة',
+            'موبايل',
+            'عنوان المنزل',
+            'عنوان العمل',
+            'هاتف المنزل',
+            'هاتف العمل',
+            'تاريخ الإنتساب',
+            'الاختصاص',
+            'رابط الصورة',
+            'المنطقة',
+            'الحي',
         ];
     }
     public function chunkSize(): int
