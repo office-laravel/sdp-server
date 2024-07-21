@@ -873,11 +873,25 @@ public function destroyForNotice($IDTeam)
 
 public function searchByName(Request $request)
 {
-        $searchTerm = $request->input('search_FirstName');
-        $request->session()->put('search_FirstName', $searchTerm);
-      if ( auth()->user()->Role == 'admin')
-     {
+    $searchTerm = $request->input('search_FirstName');
+    $request->session()->put('search_FirstName', $searchTerm);
+
+    if ( auth()->user()->Role == 'admin')
+    {
     $members =  Member::where('FirstName', 'like', '%'.$searchTerm.'%')->orderBy('FirstName', 'Asc')->paginate(50);
+   
+    // $members = Member::where('FirstName', 'like', '%'.$searchTerm.'%')
+    // ->orderBy('FirstName', 'Asc')
+    // ->paginate(50)
+    // ->withQueryString();
+
+   
+    // $members = Member::where('FirstName', 'like', '%'.$searchTerm.'%')
+    // ->orderBy('FirstName', 'Asc')
+    // ->paginate(50)
+    // ->appends(['search_FirstName' => $searchTerm]);
+
+
     $memberCount =  Member::where('FirstName', 'like', '%'.$searchTerm.'%')->count();
     $paginationLinks = $members->withQueryString()->links('pagination::bootstrap-4');
     

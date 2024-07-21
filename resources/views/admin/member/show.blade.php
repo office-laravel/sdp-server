@@ -119,7 +119,7 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						display: none;
 					  }
 					}
-				  </style>
+				</style>
 				  
 				{{-- search --}}
 				<div class="row">
@@ -341,31 +341,30 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 				</div>
 				<br>
 
- <style>
+ 	<style>
 
-.pagination {
-    display: flex;
-    justify-content: center;
-}
+		.pagination {
+			display: flex;
+			justify-content: center;
+		}
 
-.pagination .page-item {
-    margin: 0 5px;
-}
+		.pagination .page-item {
+			margin: 0 5px;
+		}
 
-.pagination .page-link {
-    font-size: 16px; /* تعديل حجم الخط حسب الحاجة */
-    padding: 5px 10px; /* تعديل حجم الهامش حول العناصر */
-    border: 1px solid #ccc; /* إضافة حدود للعناصر */
-    border-radius: 5px; /* تقويس زوايا العناصر */
-}
+		.pagination .page-link {
+			font-size: 16px; /* تعديل حجم الخط حسب الحاجة */
+			padding: 5px 10px; /* تعديل حجم الهامش حول العناصر */
+			border: 1px solid #ccc; /* إضافة حدود للعناصر */
+			border-radius: 5px; /* تقويس زوايا العناصر */
+		}
 
-.pagination .page-item.active .page-link {
-    background-color: #007bff; /* تغيير لون الخلفية للصفحة النشطة */
-    color: #fff; /* تغيير لون النص للصفحة النشطة */
-}
+		.pagination .page-item.active .page-link {
+			background-color: #007bff; /* تغيير لون الخلفية للصفحة النشطة */
+			color: #fff; /* تغيير لون النص للصفحة النشطة */
+		}
 
-
-</style>
+	</style>
 
 				<!-- breadcrumb -->
 @endsection
@@ -540,6 +539,9 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 							<tr>
 								<td style="font-weight: bold;">عدد نتائج البحث {{ $memberCount }}</td>
 							</tr>
+
+							{{-- {!! $paginationLinks->appends(['search_FirstName' => request('search_FirstName')])->links() !!} --}}
+
 						@endif
 
 						@if(request()->input('search_LastName') == null)
@@ -621,6 +623,7 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 					
 					{!! $paginationLinks !!}
 
+					
                 </div>
 				@endif
             
