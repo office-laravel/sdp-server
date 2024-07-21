@@ -28,10 +28,12 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Session;
 
 
+
 use Illuminate\Pagination\LengthAwarePaginator;
 
 use Illuminate\Support\paginate;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MemberExport;
 class MemberController extends Controller
 {
 
@@ -1482,6 +1484,20 @@ public function exportDataToCSV(Request $request)
         }
         fclose($handle);
         return response()->make('', 200, $headers);
+}
+public function exceldownload($page)
+{
+    
+   set_time_limit(0);
+    return Excel::download(new MemberExport($page), 'Members-'.$page.'.xlsx');
+}
+public function exportexcel()
+{
+    
+    $lastpage=Member::select('id')->paginate(4000)->lastPage();
+     
+    return view('admin.member.export2excel',['counts'=>$lastpage]);
+  
 }
   
  // public function GetCityWithMemberCount(Request $request)
