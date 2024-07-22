@@ -34,7 +34,11 @@ Route::get('/', function () {
 Route::get('print', function () {
   return view('admin.member.print');
 });
-
+Route::get('/clear', function () {
+  $exitCode = Artisan::call('route:cache');
+  $exitCode = Artisan::call('optimize');
+  return 'ok';
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
