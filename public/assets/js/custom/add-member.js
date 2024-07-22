@@ -1,12 +1,13 @@
 var streetdata;
+var loading=0;
 $(document).ready(function () {
 
 	$('#street_txt').on( "keyup", function (e) {
 	
 		var inputval=$('#street_txt').val()
-		if(inputval!='' && inputval.length > 0){
-			 
-			  setTimeout(loadstreet, 1000);
+		if(inputval!='' && inputval.length > 0 && loading==0 ){
+			loadstreet();
+		//	  setTimeout(loadstreet, 1000);
 		}
 		//setTimeout(loadstreet, 1000);
 		//e.preventDefault();	
@@ -44,7 +45,7 @@ $('#street').on( "change", function (e) {
  
 //pages combo
 function loadstreet() {	
-	 
+	loading =1;
 	var this_street_url=search_street_url;
 	var searchval =$('#street_txt').val();
 	this_street_url=this_street_url.replace("itemid",searchval);	 
@@ -64,17 +65,20 @@ function loadstreet() {
 		if (data.length == 0) {		
 			 
 			choose='لا يوجد نتائج';
-			$('#street').html('<option   value="0"  class="text-muted">'+choose+'</option>');	 
+			$('#street').html('<option   value="0"  class="text-muted">'+choose+'</option>');	
+			loading =0;
 		} else   {
 			datalist=data;
 			$(data).each(function(index, item) {
 				$('#street').append('<option value="'+ item.id +'" >'+ item.street +'</option>');
-		});		 
+		});	
+		loading =0;	 
 		}		 
-	}, error: function (errorresult) {			 
+	}, error: function (errorresult) {	
+		loading =0;		 
 	} 
 });
-
+ 
 	};
 
 	 
