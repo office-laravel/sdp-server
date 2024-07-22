@@ -127,8 +127,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-team') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="الرقم الحزبي" type="search" name="search_IDTeam">
-								@if(request()->input('search_IDTeam')!=null)  value="{{ request()->input('search_IDTeam')  }}"   @endif
+								<input class="form-control" placeholder="الرقم الحزبي" type="search" name="search_IDTeam"
+								@if(request()->input('search_IDTeam')!=null)  value="{{ request()->input('search_IDTeam')  }}"@endif>
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
