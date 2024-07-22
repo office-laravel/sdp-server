@@ -183,9 +183,7 @@
 									<div class="form-group">
 										<label>المنطقة</label>
 
-
-										<input class="form-control" placeholder="المنطقة" value="" type="search" name="area">
-
+ 
 
 										<select name="area" id="area" 
 										class="form-control select">
@@ -205,7 +203,7 @@
 										<label>الحي</label>
 
 
-										<input class="form-control" placeholder="الحي" value="" type="search" name="street">
+										<input class="form-control" placeholder="ابحث عن الحي" value="" type="text" name="street_txt"  id="street_txt">
 
 
 										<select name="street" id="street"
@@ -519,8 +517,17 @@
 		<script>
 		   var cityurl='{{url("admin/member/get-areasm","itemid")}}';
 		   var areaurl='{{url("admin/member/get-streets","itemid")}}';
+		   var street_txt_val='';
+		   var search_street_url='{{url("admin/member/search_street","itemid")}}';
+		   var search_area_url='{{url("admin/member/search_area","itemid")}}';
+		   var search_city_url='{{url("admin/member/search_city","itemid")}}';
 			$(function() {
 			$('#city').change(function(){
+				var inputval=$('#street_txt').val();
+		if(inputval=='' || inputval.length == 0){
+			 
+			   
+		 
 				   var thiscityurl=cityurl;
 		   var cityId = $(this).find("option:selected").val();
 		   if(cityId==0){
@@ -542,10 +549,13 @@
 				});
 			}
 			}
+		}
 			});
 
 
    	 	$('#area').change(function(){
+			var inputval=$('#street_txt').val();
+			if(inputval=='' || inputval.length == 0){
 		var thisareaurl=areaurl;
 		var areaId = $(this).find("option:selected").val();
 		thisareaurl=thisareaurl.replace("itemid",areaId);
@@ -562,6 +572,7 @@
 		}
      	});
 		}
+	}
 		}); 
 		}); 
 
@@ -591,5 +602,5 @@
 <!-- Internal TelephoneInput js-->
 <script src="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
-
+<script src="{{URL::asset('assets/js/custom/add-member.js')}}"></script>
 @endsection
