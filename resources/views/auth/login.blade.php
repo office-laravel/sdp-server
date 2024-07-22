@@ -28,51 +28,55 @@
 				<div class="col-md-4 col-lg-4 col-xl-4 my-auto mx-auto">
 					<img src="{{URL::asset('assets/img/media/team.png')}}"  style="text-align: center;" alt="logo">
 				</div>
-
-				<div class="main-signup-header">
-					<h2>مرحبا بك</h2>
-					<h5 class="font-weight-semibold mb-4"> تسجيل الدخول</h5>
-					<form method="POST" action="{{ route('login') }}">
-					 @csrf
-						<div class="form-group">
-						<label>البريد الالكتروني</label>
-						<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-						 @error('email')
-						 <span class="invalid-feedback" role="alert">
-						 <strong>{{ $message }}</strong>
-						 </span>
-						 @enderror
-						</div>
-
-					 <div class="form-group">
-					  <label>كلمة المرور</label> 
-					
-					  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-					  @error('password')
-					  <span class="invalid-feedback" role="alert">
-					  <strong>{{ $message }}</strong>
-					  </span>
-					  @enderror
-					  <div class="form-group row">
-						  <div class="col-md-6 offset-md-4">
-							   <div class="form-check">
-									<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-									 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<label class="form-check-label" for="remember">
-										   {{ __('تذكرني') }}
-									</label>
-							   </div>
-						   </div>
-					   </div>
-					  </div>
-						<button type="submit" class="btn btn-main-primary btn-block">
-						{{ __('تسجيل الدخول') }}
-						</button>
-
-						<br><br>
-					</form>
+<div class="row" style="display: flex;justify-content: center; padding-top: 15px">
+	<div class="col-sm-4 " >
+		<div class="main-signup-header">
+			<h2 class="text-center">مرحبا بك</h2>
+			<h5 class="font-weight-semibold mb-4"> تسجيل الدخول</h5>
+			<form method="POST" action="{{ route('login') }}">
+			 @csrf
+				<div class="form-group">
+				<label>البريد الالكتروني</label>
+				<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+				 @error('email')
+				 <span class="invalid-feedback" role="alert">
+				 <strong>{{ $message }}</strong>
+				 </span>
+				 @enderror
 				</div>
+
+			 <div class="form-group">
+			  <label>كلمة المرور</label> 
+			
+			  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+			  @error('password')
+			  <span class="invalid-feedback" role="alert">
+			  <strong>{{ $message }}</strong>
+			  </span>
+			  @enderror
+			  <div class="form-group row">
+				  <div class="col-md-6 offset-md-4">
+					   <div class="form-check">
+							<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<label class="form-check-label" for="remember">
+								   {{ __('تذكرني') }}
+							</label>
+					   </div>
+				   </div>
+			   </div>
+			  </div>
+				<button type="submit" class="btn btn-main-primary btn-block">
+				{{ __('تسجيل الدخول') }}
+				</button>
+
+				<br><br>
+			</form>
+		</div>
+	</div>
+</div>
+				
 			</div>
 		</div>
 	</div>
