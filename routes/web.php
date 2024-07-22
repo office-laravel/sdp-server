@@ -107,21 +107,21 @@ Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(functi
 
 
         // search
-        Route::post('active', [MemberController::class, 'searchForActiveMember'])->name('search-ActiveMember');
-        Route::post('dis-active', [MemberController::class, 'searchForDisActiveMember'])->name('search-disActiveMember');
-        Route::post('phone', [MemberController::class, 'searchByPhoneNull'])->name('search-phone');
+        Route::any('active', [MemberController::class, 'searchForActiveMember'])->name('search-ActiveMember');
+        Route::any('dis-active', [MemberController::class, 'searchForDisActiveMember'])->name('search-disActiveMember');
+        Route::any('phone', [MemberController::class, 'searchByPhoneNull'])->name('search-phone');
 
-        Route::post('team', [MemberController::class, 'searchByIDTeam'])->name('search-team');
-        Route::post('name', [MemberController::class, 'searchByName'])->name('search-name');
-        Route::post('lastName', [MemberController::class, 'searchByLastName'])->name('search-LastName');
+        Route::any('team', [MemberController::class, 'searchByIDTeam'])->name('search-team');
+        Route::any('name', [MemberController::class, 'searchByName'])->name('search-name');
+        Route::any('lastName', [MemberController::class, 'searchByLastName'])->name('search-LastName');
 
-        Route::post('city', [MemberController::class, 'searchByCity'])->name('search-city');
-        Route::post('street', [MemberController::class, 'searchBystreet'])->name('search-Street');
-        Route::post('area', [MemberController::class, 'searchByArea'])->name('search-Area');
+        Route::any('city', [MemberController::class, 'searchByCity'])->name('search-city');
+        Route::any('street', [MemberController::class, 'searchBystreet'])->name('search-Street');
+        Route::any('area', [MemberController::class, 'searchByArea'])->name('search-Area');
 
-        Route::post('qualification', [MemberController::class, 'searchByQualification'])->name('search-qualification');
-        Route::post('specialization', [MemberController::class, 'searchBySpecialization'])->name('search-specialization');
-        Route::post('occupation', [MemberController::class, 'searchByOccupation'])->name('search-occupation');
+        Route::any('qualification', [MemberController::class, 'searchByQualification'])->name('search-qualification');
+        Route::any('specialization', [MemberController::class, 'searchBySpecialization'])->name('search-specialization');
+        Route::any('occupation', [MemberController::class, 'searchByOccupation'])->name('search-occupation');
 
 
 

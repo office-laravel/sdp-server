@@ -128,6 +128,7 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 							@csrf
 							<div class="input-group">
 								<input class="form-control" placeholder="الرقم الحزبي" type="search" name="search_IDTeam">
+								@if(request()->input('search_IDTeam')!=null)  value="{{ request()->input('search_IDTeam')  }}"   @endif
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
@@ -139,18 +140,20 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-name') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="الاسم" type="search" name="search_FirstName">
+								<input class="form-control" placeholder="الاسم" @if(request()->input('search_FirstName')!=null)  value="{{ request()->input('search_FirstName')  }}"   @endif  type="search" name="search_FirstName">
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
 							</div>
 						</form>
+					
 					</div>
 					<div class="col-4">
 						<form action="{{ route('search-LastName') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="النسبة" type="search" name="search_LastName">
+								<input class="form-control" placeholder="النسبة" type="search" name="search_LastName"
+								@if(request()->input('search_LastName')!=null)  value="{{ request()->input('search_LastName')  }}"   @endif>
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
@@ -164,7 +167,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-team') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="الرقم الحزبي" type="search" name="search_IDTeam">
+								<input class="form-control" placeholder="الرقم الحزبي" type="search" name="search_IDTeam"
+								@if(request()->input('search_IDTeam')!=null)  value="{{ request()->input('search_IDTeam')  }}"   @endif>
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
@@ -175,7 +179,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-name') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="الاسم" type="search" name="search_FirstName">
+								<input class="form-control" placeholder="الاسم" type="search" name="search_FirstName"
+								@if(request()->input('search_FirstName')!=null)  value="{{ request()->input('search_FirstName')  }}"   @endif>
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
@@ -186,7 +191,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-LastName') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="النسبة" type="search" name="search_LastName">
+								<input class="form-control" placeholder="النسبة" type="search" name="search_LastName"
+								@if(request()->input('search_LastName')!=null)  value="{{ request()->input('search_LastName')  }}"   @endif>
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
@@ -224,7 +230,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-city') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="المحافظة" type="search" name="search_City">
+								<input class="form-control" placeholder="المحافظة" type="search" name="search_City"
+								@if(request()->input('search_City')!=null)  value="{{ request()->input('search_City')  }}"   @endif>
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
@@ -235,7 +242,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-Area') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="المنطقة" type="search" name="search_Area">
+								<input class="form-control" placeholder="المنطقة" type="search" name="search_Area"
+								@if(request()->input('search_Area')!=null)  value="{{ request()->input('search_Area')  }}"   @endif>
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
@@ -246,7 +254,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-Street') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="الحي" type="search" name="search_Street">
+								<input class="form-control" placeholder="الحي" type="search" name="search_Street"
+								@if(request()->input('search_Area')!=null)  value="{{ request()->input('search_Area')  }}"   @endif>
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
@@ -282,7 +291,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-city') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="المحافظة" type="search" name="search_City">
+								<input class="form-control" placeholder="المحافظة" type="search" name="search_City"
+								@if(request()->input('search_City')!=null)  value="{{ request()->input('search_City')  }}"   @endif>
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
@@ -293,7 +303,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-Area') }}" method="post">
 								@csrf
 								<div class="input-group">
-									<input class="form-control" placeholder="المنطقة" type="search" name="search_Area">
+									<input class="form-control" placeholder="المنطقة" type="search" name="search_Area"
+									@if(request()->input('search_Area')!=null)  value="{{ request()->input('search_Area')  }}"   @endif>
 									<div class="input-group-append">
 										<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 									</div>
@@ -304,7 +315,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 							<form action="{{ route('search-Street') }}" method="post">
 									@csrf
 									<div class="input-group">
-										<input class="form-control" placeholder="الحي" type="search" name="search_Street">
+										<input class="form-control" placeholder="الحي" type="search" name="search_Street"
+										@if(request()->input('search_Street')!=null)  value="{{ request()->input('search_Street')  }}"   @endif>
 										<div class="input-group-append">
 											<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 										</div>
@@ -318,7 +330,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-occupation') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="المهنة" type="search" name="search_Occupation">
+								<input class="form-control" placeholder="المهنة" type="search" name="search_Occupation"
+								@if(request()->input('search_Occupation')!=null)  value="{{ request()->input('search_Occupation')  }}"   @endif>
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
@@ -331,7 +344,8 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 						<form action="{{ route('search-occupation') }}" method="post">
 							@csrf
 							<div class="input-group">
-								<input class="form-control" placeholder="المهنة" type="search" name="search_Occupation">
+								<input class="form-control" placeholder="المهنة" type="search" name="search_Occupation"
+								@if(request()->input('search_Occupation')!=null)  value="{{ request()->input('search_Occupation')  }}"   @endif>
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
 								</div>
@@ -537,7 +551,12 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 							<!-- لا يوجد قيمة مدخلة -->
 						@else
 							<tr>
+								@if (@isset($memberCount))
+									
 								<td style="font-weight: bold;">عدد نتائج البحث {{ $memberCount }}</td>
+									
+								@endif
+								
 							</tr>
 
 							{{-- {!! $paginationLinks->appends(['search_FirstName' => request('search_FirstName')])->links() !!} --}}
@@ -633,6 +652,7 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
         </div>
     </div>
 </div>
+ 
     <!-- Pagination Links -->
 {{-- <div class="d-flex justify-content-center">
 	{!! $members->link() !!}
