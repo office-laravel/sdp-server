@@ -1717,14 +1717,7 @@ public function Advancedsearch(Request $request)
 
 public function Advancedexport(Request $request)
 {
-    $results = Member::get();
-
-
-
-    // $members = Member::orderBy('IDTeam', 'Asc')->select('id','IDTeam','FirstName','LastName',
-    // 'City','status')->paginate(50);
-    // $memberCount = Member::count();
-    // $paginationLinks = $members->withQueryString()->links('pagination::bootstrap-4');
+    $results = Member::query(); 
 
     if ($request->City != 0) {
         $cityId = $request->City;
@@ -1760,23 +1753,17 @@ public function Advancedexport(Request $request)
         $results->where('Occupation', $request->Occupation);
     }
   // $memberCount = $results->count();
-    $members = $results->sortBy('IDTeam')->get();
-   // $memberCount = Member::count();
-   // $paginationLinks = $members->withQueryString()->links('pagination::bootstrap-4');
+    $members = $results->orderBy('IDTeam')->select('id','IDTeam','FirstName','LastName'
+        ,'FatherName',
+    'MotherName',
+    'PlaceOfBirth','BirthDate','Constraint',
+    'City','IDNumber','Gender','Qualification','Occupation','MobilePhone','HomeAddress',
+    'WorkAddress','HomePhone','WorkPhone','DateOfJoin','Specialization','Image','area','street','status')->get();
+ 
     set_time_limit(0);
-    return Excel::download(new AdvanceExport($members), 'Members-search.xlsx');
-  //  return $memberCount;
-    // return view('admin.member.Advancedsearch', [
-    //     'members' => $members,
-    //     'memberCount'=>$memberCount,
-    //     'city'=>$city,
-    //     'areas'=>$areas,
-    //     'streets'=>$streets,
-    //     'qualifications'=>$qualifications,
-    //     'specializations'=>$specializations,
-    //     'occupations'=>$occupations,
-    //     'paginationLinks' => $paginationLinks
-    // ]);
+    
+  return Excel::download(new AdvanceExport(collect($members)), 'Members-search.xlsx');
+ 
 }
 
 public function print($id) {

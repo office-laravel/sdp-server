@@ -15,7 +15,7 @@ class AdvanceExport implements FromCollection , WithHeadings
 {
    // use Exportable;
     public $list;
-    public function __construct( Member $list)
+    public function __construct($list)
     {
         $this->list = $list;
     }
