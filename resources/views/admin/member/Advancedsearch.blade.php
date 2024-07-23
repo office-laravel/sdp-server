@@ -191,7 +191,9 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 							</tr>
                         </thead>
                     	<tbody>
-							<?php $i = 1 ?>
+
+							<?php $i = $members->firstItem(); ?>
+							
 							@if(isset($members) && !$members->isEmpty()) 
 							@foreach($members as $member)
 							<tr>
