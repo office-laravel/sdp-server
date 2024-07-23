@@ -110,7 +110,7 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 
                 </form>
                 <br>
-
+				
 <style>
 .pagination {
     display: flex;
@@ -141,7 +141,35 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mg-b-0">جميع الأعضاء</h4>
-                    <i class="mdi mdi-dots-horizontal text-gray"></i>
+					<form action="{{ url('admin/member/Advancedexport') }}" method="GET">
+						@csrf
+						{{-- @if($city)
+						<input type="hidden" name="City" value="{{$city->id}}">
+						@endif --}}
+						@if(request()->input('City'))
+						<input type="hidden" name="City" value="{{ request()->input('City') }}">
+						@endif
+						@if(request()->input('area'))
+						<input type="hidden" name="area" value="{{ request()->input('area') }}">
+						@endif
+						@if(request()->input('street'))
+						<input type="hidden" name="street" value="{{ request()->input('street') }}">
+						@endif
+						@if(request()->input('Qualification'))
+						<input type="hidden" name="Qualification" value="{{ request()->input('Qualification') }}">
+						@endif
+						@if(request()->input('Specialization'))
+						<input type="hidden" name="Specialization" value="{{ request()->input('Specialization') }}">
+						@endif
+						@if(request()->input('Occupation'))
+						<input type="hidden" name="Occupation" value="{{ request()->input('Occupation') }}">
+						@endif
+						
+					<div class="d-flex justify-content-center">
+						<button type="submit" class="btn btn-primary">تصدير ل Exel </button>
+					  </div>
+					
+					</form>
                 </div>
             </div>
             <div class="card-body">
@@ -225,6 +253,10 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
                     </table>
 					{!! $paginationLinks !!}
                 </div>
+				@if (@isset($memberCount))					
+				<span style="font-weight: bold;">عدد نتائج البحث {{ $memberCount }}</span>					
+				@endif
+				
             </div>
         </div>
     </div>

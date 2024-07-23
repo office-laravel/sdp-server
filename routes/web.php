@@ -132,7 +132,7 @@ Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(functi
         //Advanced search
         Route::get('Advancedsearch', [MemberController::class, 'Advancedsearch'])->name('Advancedsearch');
         Route::get('AdvancedIndex', [MemberController::class, 'AdvancedIndex'])->name('AdvancedIndex');
-
+        Route::get('Advancedexport', [MemberController::class, 'Advancedexport']) ;
 
 
         //order

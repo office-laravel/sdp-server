@@ -34,7 +34,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\paginate;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MemberExport;
-
+use App\Exports\AdvanceExport;
 class MemberController extends Controller
 {
 
@@ -1699,7 +1699,8 @@ public function Advancedsearch(Request $request)
 
     $members = $results->orderBy('IDTeam', 'Asc')->select('id','IDTeam','FirstName','LastName',
     'City','status')->paginate(50);
-    $memberCount = Member::count();
+    // $memberCount = Member::count();
+    $memberCount = $results->count();
     $paginationLinks = $members->withQueryString()->links('pagination::bootstrap-4');
     
     return view('admin.member.Advancedsearch', [
@@ -1715,7 +1716,69 @@ public function Advancedsearch(Request $request)
     ]);
 }
 
+public function Advancedexport(Request $request)
+{
+    $results = Member::get();
 
+
+
+    // $members = Member::orderBy('IDTeam', 'Asc')->select('id','IDTeam','FirstName','LastName',
+    // 'City','status')->paginate(50);
+    // $memberCount = Member::count();
+    // $paginationLinks = $members->withQueryString()->links('pagination::bootstrap-4');
+
+    if ($request->City != 0) {
+        $cityId = $request->City;
+        $cityName = City::where('id', $cityId)->first()->Name;
+        $results->where('City', $cityName);
+    }
+
+    if ($request->area != 0) {
+        $areaId = $request->area;
+        $areaName = City::where('id', $areaId)->first()->area;
+        $results->where('area', $areaName);
+    }
+
+    if ($request->street != 0) {
+        $streetId = $request->street;
+        $streetName = City::where('id', $streetId)->first()->street;
+        $results->where('street', $streetName);
+    }
+
+    if ($request->Qualification != 0) {
+        $qualificationId = $request->Qualification;
+        $qualificationName = Qualification::where('id', $qualificationId)->first()->Name;
+        $results->where('Qualification', $qualificationName);
+    }
+
+    if ($request->Specialization != 0) {
+        $specializationId = $request->Specialization;
+        $specializationName = Qualification::where('id', $specializationId)->first()->specialization;
+        $results->where('Specialization', $specializationName);
+    }
+
+    if ($request->Occupation != 0) {
+        $results->where('Occupation', $request->Occupation);
+    }
+  // $memberCount = $results->count();
+    $members = $results->sortBy('IDTeam')->get();
+   // $memberCount = Member::count();
+   // $paginationLinks = $members->withQueryString()->links('pagination::bootstrap-4');
+    set_time_limit(0);
+    return Excel::download(new AdvanceExport($members), 'Members-search.xlsx');
+  //  return $memberCount;
+    // return view('admin.member.Advancedsearch', [
+    //     'members' => $members,
+    //     'memberCount'=>$memberCount,
+    //     'city'=>$city,
+    //     'areas'=>$areas,
+    //     'streets'=>$streets,
+    //     'qualifications'=>$qualifications,
+    //     'specializations'=>$specializations,
+    //     'occupations'=>$occupations,
+    //     'paginationLinks' => $paginationLinks
+    // ]);
+}
 
 public function print($id) {
     $member = Member::where('id', $id)->first();
