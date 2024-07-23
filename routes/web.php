@@ -12,9 +12,8 @@ use App\Http\Controllers\StatusController;
 use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 
-
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +33,7 @@ Route::get('/', function () {
 Route::get('print', function () {
   return view('admin.member.print');
 });
+
 Route::get('/clear', function () {
   $exitCode = Artisan::call('route:cache');
   $exitCode = Artisan::call('optimize');

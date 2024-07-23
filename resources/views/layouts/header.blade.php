@@ -4,7 +4,7 @@
 <!-- Title -->
 <title> @yield('title') </title>
 <!-- Favicon -->
-<link rel="icon" href="{{URL::asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/>
+<link rel="icon" href="{{URL::asset('assets/img/brand/team-icon.png')}}" type="image/x-icon"/>
 <!-- Icons css -->
 <link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet">
 <!--  Custom Scroll bar-->
@@ -29,10 +29,10 @@
 				<div class="container-fluid">
 					<div class="main-header-left ">
 						<div class="responsive-logo">
-							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/logo.png')}}" class="logo-1" alt="logo"></a>
-							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/logo-white.png')}}" class="dark-logo-1" alt="logo"></a>
-							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="logo-2" alt="logo"></a>
-							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="dark-logo-2" alt="logo"></a>
+							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/team-icon.png')}}" class="logo-1" alt="logo"></a>
+							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/team-icon.png')}}" class="dark-logo-1" alt="logo"></a>
+							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/team-icon.png')}}" class="logo-2" alt="logo"></a>
+							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/team-icon.png')}}" class="dark-logo-2" alt="logo"></a>
 						</div>
 						<div class="app-sidebar__toggle" data-toggle="sidebar">
 							<a class="open-toggle" href="#"><i class="header-icon fe fe-align-left" ></i></a>
